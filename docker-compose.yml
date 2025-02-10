@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  app:
+    container_name: ticket-app-10
+    build:
+      context: .
+    ports:
+      - 3200:80
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - laravel-ticket-network
+  phpmyadmin:
+    container_name: ticket-phpmyadmin-10
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - 3201:80
+    environment:
+      UPLOAD_LIMIT: 500M
+    networks:
+      - laravel-ticket-network
+  db:
+    container_name: ticket-db-10
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "3332:3306"
+    environment:
+      - MYSQL_DATABASE=ticket
+      - MYSQL_ROOT_PASSWORD=pass
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - laravel-ticket-network
+
+volumes:
+  laravel-ticket-volume:
+
+networks:
+  laravel-ticket-network:
+    driver: bridge
