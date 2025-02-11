@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyCommentRequest;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Status;
+use App\Models\Ticket;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
