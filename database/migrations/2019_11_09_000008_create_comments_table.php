@@ -9,16 +9,11 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
-
+            $table->id();
             $table->string('author_name')->nullable();
-
             $table->string('author_email')->nullable();
-
             $table->longText('comment_text');
-
             $table->timestamps();
-
             $table->softDeletes();
         });
     }

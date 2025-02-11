@@ -9,14 +9,10 @@ class CreatePrioritiesTable extends Migration
     public function up()
     {
         Schema::create('priorities', function (Blueprint $table) {
-            $table->increments('id');
-
+            $table->id();
             $table->string('name');
-
             $table->string('color')->nullable();
-
             $table->timestamps();
-
             $table->softDeletes();
         });
     }
