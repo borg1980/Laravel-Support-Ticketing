@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Ticket;
+use App\Models\Ticket;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Notifications\CommentEmailNotification;
 use Illuminate\Support\Facades\Notification;
@@ -55,7 +55,7 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ticket  $ticket
+     * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
     public function show(Ticket $ticket)

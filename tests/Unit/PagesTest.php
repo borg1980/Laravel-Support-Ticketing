@@ -11,7 +11,7 @@ class PagesTest extends TestCase
 
     public function test_audit_logs_view()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
         $this->actingAs($user);
         $response = $this->get(uri: '/admin/audit-logs');
         $response->assertStatus(200);
@@ -20,7 +20,7 @@ class PagesTest extends TestCase
 
     public function test_tickets_view()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
         $this->actingAs($user);
         $response = $this->get(uri: '/admin/tickets');
         $response->assertStatus(200);
@@ -28,7 +28,7 @@ class PagesTest extends TestCase
 
     public function test_comments_view()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
         $this->actingAs($user);
         \Gate::define('comment_access', function ($user) {
             return true;

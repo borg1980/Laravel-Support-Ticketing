@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Priority extends Model
 {
     use SoftDeletes;
 
-    public $table = 'categories';
+    public $table = 'priorities';
 
     protected $dates = [
         'created_at',
@@ -27,6 +27,6 @@ class Category extends Model
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class, 'category_id', 'id');
+        return $this->hasMany(Ticket::class, 'priority_id', 'id');
     }
 }

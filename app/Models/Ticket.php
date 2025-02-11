@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Scopes\AgentScope;
 use App\Traits\Auditable;
@@ -107,7 +107,7 @@ class Ticket extends Model implements HasMedia
 
     public function sendCommentNotification($comment)
     {
-        $users = \App\User::where(function ($q) {
+        $users = \App\Models\User::where(function ($q) {
                 $q->whereHas('roles', function ($q) {
                     return $q->where('title', 'Agent');
                 })

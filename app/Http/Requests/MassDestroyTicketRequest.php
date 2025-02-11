@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Ticket;
+use App\Models\Ticket;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;

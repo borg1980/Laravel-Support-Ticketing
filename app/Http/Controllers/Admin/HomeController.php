@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Gate;
 use Symfony\Component\HttpFoundation\Response;
-use App\Ticket;
+use App\Models\Ticket;
 
 class HomeController
 {
