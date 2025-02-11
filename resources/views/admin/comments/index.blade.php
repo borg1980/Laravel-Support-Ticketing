@@ -55,7 +55,9 @@
                                 {{ $comment->id ?? '' }}
                             </td>
                             <td>
-                                {{ $comment->ticket->title ?? '' }}
+                                <a href="{{ route('admin.tickets.show', $comment->ticket->id) }}">
+                                    {{ $comment->ticket->title ?? '' }}
+                                </a>
                             </td>
                             <td>
                                 {{ $comment->author_name ?? '' }}
