@@ -9,10 +9,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('permission_role', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id', 'role_id_fk_583549')->references('id')->on('roles')->onDelete('cascade');
-            $table->unsignedBigInteger('permission_id');
-            $table->foreign('permission_id', 'permission_id_fk_583549')->references('id')->on('permissions')->onDelete('cascade');
+            $table->foreignId('role_id', 'role_id_fk_583549')->constrained()->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('permission_id', 'permission_id_fk_583549')->constrained()->references('id')->on('permissions')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 };
