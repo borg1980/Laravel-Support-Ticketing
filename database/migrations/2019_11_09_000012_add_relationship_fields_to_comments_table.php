@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRelationshipFieldsToCommentsTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -15,4 +15,4 @@ class AddRelationshipFieldsToCommentsTable extends Migration
             $table->foreign('user_id', 'user_fk_583777')->references('id')->on('users');
         });
     }
-}
+};
