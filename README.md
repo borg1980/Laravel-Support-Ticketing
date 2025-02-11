@@ -1,4 +1,4 @@
-Demo support ticketing project based on Laravel 10.
+Demo support ticketing project based on Laravel 11.
 
 Project is partly generated with [QuickAdminPanel](https://2019.quickadminpanel.com)
 
@@ -39,6 +39,9 @@ Project is partly generated with [QuickAdminPanel](https://2019.quickadminpanel.
 - If you want to login, click `Login` on top-right and use credentials __admin@admin.com__ - __password__ 
 - Agent's credentials are __agent1@agent1.com__ - __password__ 
 
+OR
+- Clone the repository with __git clone__
+- - Run __php artisan migrate --seed__ (on your container)
 ---
 
 ## License
