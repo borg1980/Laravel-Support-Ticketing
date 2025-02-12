@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->string('color')->nullable();

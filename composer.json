@@ -19,12 +19,12 @@
         "yajra/laravel-datatables-oracle": "^11.0"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^2.0",
+        "barryvdh/laravel-debugbar": "^3.6",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
         "phpunit/phpunit": "^11.0.1",
-        "barryvdh/laravel-debugbar": "^3.6"
+        "spatie/laravel-ignition": "^2.0"
     },
     "config": {
         "optimize-autoloader": true,

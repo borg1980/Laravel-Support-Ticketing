@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Notification;
 
 class TicketActionObserver
 {
-    public function created(Ticket $model)
+    public function created(Ticket $model): void
     {
         $data  = ['action' => 'New ticket has been created!', 'model_name' => 'Ticket', 'ticket' => $model];
         $users = \App\Models\User::whereHas('roles', function ($q) {
@@ -18,7 +18,7 @@ class TicketActionObserver
         Notification::send($users, new DataChangeEmailNotification($data));
     }
 
-    public function updated(Ticket $model)
+    public function updated(Ticket $model): void
     {
         if($model->isDirty('assigned_to_user_id'))
         {

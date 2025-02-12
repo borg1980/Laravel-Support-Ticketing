@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StatusesApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\StatusResource
     {
         abort_if(Gate::denies('status_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new StatusResource(Status::all());
     }
 
-    public function store(StoreStatusRequest $request)
+    public function store(StoreStatusRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $status = Status::create($request->all());
 
@@ -29,14 +29,14 @@ class StatusesApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Status $status)
+    public function show(Status $status): \App\Http\Resources\Admin\StatusResource
     {
         abort_if(Gate::denies('status_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new StatusResource($status);
     }
 
-    public function update(UpdateStatusRequest $request, Status $status)
+    public function update(UpdateStatusRequest $request, Status $status): \Symfony\Component\HttpFoundation\Response
     {
         $status->update($request->all());
 

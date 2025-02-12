@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PermissionsApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\PermissionResource
     {
         abort_if(Gate::denies('permission_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new PermissionResource(Permission::all());
     }
 
-    public function store(StorePermissionRequest $request)
+    public function store(StorePermissionRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $permission = Permission::create($request->all());
 
@@ -29,14 +29,14 @@ class PermissionsApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Permission $permission)
+    public function show(Permission $permission): \App\Http\Resources\Admin\PermissionResource
     {
         abort_if(Gate::denies('permission_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new PermissionResource($permission);
     }
 
-    public function update(UpdatePermissionRequest $request, Permission $permission)
+    public function update(UpdatePermissionRequest $request, Permission $permission): \Symfony\Component\HttpFoundation\Response
     {
         $permission->update($request->all());
 

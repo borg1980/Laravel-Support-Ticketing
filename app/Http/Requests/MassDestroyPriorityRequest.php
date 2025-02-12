@@ -9,14 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MassDestroyPriorityRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         abort_if(Gate::denies('priority_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'ids'   => 'required|array',

@@ -13,8 +13,9 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasApiTokens;
-
+    use SoftDeletes;
+    use Notifiable;
+    use HasApiTokens;
     public $table = 'users';
 
     protected $hidden = [
@@ -50,24 +51,24 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 
-    public function getEmailVerifiedAtAttribute($value)
+    public function getEmailVerifiedAtAttribute($value): ?string
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
     }
 
-    public function setEmailVerifiedAtAttribute($value)
+    public function setEmailVerifiedAtAttribute($value): void
     {
         $this->attributes['email_verified_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
 
-    public function setPasswordAttribute($input)
+    public function setPasswordAttribute($input): void
     {
         if ($input) {
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
         }
     }
 
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPassword($token));
     }

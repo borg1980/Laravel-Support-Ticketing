@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('ticket_id', 'ticket_fk_583774')->nullable()->constrained()->references('id')->on('tickets')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id', 'user_fk_583777')->nullable()->constrained()->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PrioritiesApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\PriorityResource
     {
         abort_if(Gate::denies('priority_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new PriorityResource(Priority::all());
     }
 
-    public function store(StorePriorityRequest $request)
+    public function store(StorePriorityRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $priority = Priority::create($request->all());
 
@@ -29,14 +29,14 @@ class PrioritiesApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Priority $priority)
+    public function show(Priority $priority): \App\Http\Resources\Admin\PriorityResource
     {
         abort_if(Gate::denies('priority_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new PriorityResource($priority);
     }
 
-    public function update(UpdatePriorityRequest $request, Priority $priority)
+    public function update(UpdatePriorityRequest $request, Priority $priority): \Symfony\Component\HttpFoundation\Response
     {
         $priority->update($request->all());
 

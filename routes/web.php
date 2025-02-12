@@ -15,7 +15,7 @@ Route::post('tickets/media', 'TicketController@storeMedia')->name('tickets.store
 Route::post('tickets/comment/{ticket}', 'TicketController@storeComment')->name('tickets.storeComment');
 Route::resource('tickets', 'TicketController')->only(['show', 'create', 'store']);
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function (): void {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');

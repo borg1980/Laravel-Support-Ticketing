@@ -9,7 +9,7 @@ use Tests\TestCase;
 class PagesTest extends TestCase
 {
 
-    public function test_audit_logs_view()
+    public function test_audit_logs_view(): void
     {
         $user = \App\Models\User::find(1);
         $this->actingAs($user);
@@ -18,7 +18,7 @@ class PagesTest extends TestCase
     }
 
 
-    public function test_tickets_view()
+    public function test_tickets_view(): void
     {
         $user = \App\Models\User::find(1);
         $this->actingAs($user);
@@ -26,11 +26,11 @@ class PagesTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_comments_view()
+    public function test_comments_view(): void
     {
         $user = \App\Models\User::find(1);
         $this->actingAs($user);
-        \Gate::define('comment_access', function ($user) {
+        \Gate::define('comment_access', function ($user): true {
             return true;
         });
         $response = $this->get(uri: '/admin/comments');

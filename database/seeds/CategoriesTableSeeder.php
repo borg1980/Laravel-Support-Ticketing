@@ -10,7 +10,7 @@ class CategoriesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $faker = Faker\Factory::create();
         $categories = [

@@ -14,8 +14,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Ticket extends Model implements HasMedia
 {
-    use SoftDeletes, InteractsWithMedia, Auditable;
-
+    use SoftDeletes;
+    use InteractsWithMedia;
+    use Auditable;
     public $table = 'tickets';
 
     protected $appends = [
@@ -42,7 +43,7 @@ class Ticket extends Model implements HasMedia
         'assigned_to_user_id',
     ];
 
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
@@ -61,7 +62,7 @@ class Ticket extends Model implements HasMedia
         return $this->hasMany(Comment::class, 'ticket_id', 'id');
     }
 
-    public function getAttachmentsAttribute()
+    public function getAttachmentsAttribute(): \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection
     {
         return $this->getMedia('attachments');
     }
@@ -86,32 +87,32 @@ class Ticket extends Model implements HasMedia
         return $this->belongsTo(User::class, 'assigned_to_user_id');
     }
 
-    public function scopeFilterTickets($query)
+    public function scopeFilterTickets($query): void
     {
-        $query->when(request()->input('priority'), function($query) {
-                $query->whereHas('priority', function($query) {
+        $query->when(request()->input('priority'), function($query): void {
+                $query->whereHas('priority', function($query): void {
                     $query->whereId(request()->input('priority'));
                 });
             })
-            ->when(request()->input('category'), function($query) {
-                $query->whereHas('category', function($query) {
+            ->when(request()->input('category'), function($query): void {
+                $query->whereHas('category', function($query): void {
                     $query->whereId(request()->input('category'));
                 });
             })
-            ->when(request()->input('status'), function($query) {
-                $query->whereHas('status', function($query) {
+            ->when(request()->input('status'), function($query): void {
+                $query->whereHas('status', function($query): void {
                     $query->whereId(request()->input('status'));
                 });
             });
     }
 
-    public function sendCommentNotification($comment)
+    public function sendCommentNotification($comment): void
     {
-        $users = \App\Models\User::where(function ($q) {
+        $users = \App\Models\User::where(function ($q): void {
                 $q->whereHas('roles', function ($q) {
                     return $q->where('title', 'Agent');
                 })
-                ->where(function ($q) {
+                ->where(function ($q): void {
                     $q->whereHas('comments', function ($q) {
                         return $q->whereTicketId($this->id);
                     })
@@ -120,12 +121,12 @@ class Ticket extends Model implements HasMedia
                     });
                 });
             })
-            ->when(!$comment->user_id && !$this->assigned_to_user_id, function ($q) {
+            ->when(!$comment->user_id && !$this->assigned_to_user_id, function ($q): void {
                 $q->orWhereHas('roles', function ($q) {
                     return $q->where('title', 'Admin');
                 });
             })
-            ->when($comment->user, function ($q) use ($comment) {
+            ->when($comment->user, function ($q) use ($comment): void {
                 $q->where('id', '!=', $comment->user_id);
             })
             ->get();

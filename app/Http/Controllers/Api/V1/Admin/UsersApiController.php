@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UsersApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\UserResource
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new UserResource(User::with(['roles'])->get());
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
@@ -30,14 +30,14 @@ class UsersApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(User $user)
+    public function show(User $user): \App\Http\Resources\Admin\UserResource
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new UserResource($user->load(['roles']));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): \Symfony\Component\HttpFoundation\Response
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));

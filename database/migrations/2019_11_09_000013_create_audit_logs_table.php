@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('audit_logs', function (Blueprint $table) {
+        Schema::create('audit_logs', function (Blueprint $table): void {
             $table->id();
             $table->text('description');
             $table->unsignedBigInteger('subject_id')->nullable();

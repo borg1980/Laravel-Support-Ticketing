@@ -13,10 +13,10 @@ class HomeController
         abort_if(Gate::denies('dashboard_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $totalTickets = Ticket::count();
-        $openTickets = Ticket::whereHas('status', function($query) {
+        $openTickets = Ticket::whereHas('status', function($query): void {
             $query->whereName('Open');
         })->count();
-        $closedTickets = Ticket::whereHas('status', function($query) {
+        $closedTickets = Ticket::whereHas('status', function($query): void {
             $query->whereName('Closed');
         })->count();
 

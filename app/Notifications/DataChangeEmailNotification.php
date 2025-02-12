@@ -12,13 +12,13 @@ class DataChangeEmailNotification extends Notification
 {
     use Queueable;
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->data = $data;
         $this->ticket = $data['ticket'];
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }

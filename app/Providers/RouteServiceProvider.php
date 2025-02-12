@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
 
@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map()
+    public function map(): void
     {
         $this->mapApiRoutes();
 

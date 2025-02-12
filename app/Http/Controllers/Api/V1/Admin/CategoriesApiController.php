@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CategoriesApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\CategoryResource
     {
         abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CategoryResource(Category::all());
     }
 
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreCategoryRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $category = Category::create($request->all());
 
@@ -29,14 +29,14 @@ class CategoriesApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Category $category)
+    public function show(Category $category): \App\Http\Resources\Admin\CategoryResource
     {
         abort_if(Gate::denies('category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CategoryResource($category);
     }
 
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category): \Symfony\Component\HttpFoundation\Response
     {
         $category->update($request->all());
 

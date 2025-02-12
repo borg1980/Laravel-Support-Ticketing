@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CommentsApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\CommentResource
     {
         abort_if(Gate::denies('comment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CommentResource(Comment::with(['ticket', 'user'])->get());
     }
 
-    public function store(StoreCommentRequest $request)
+    public function store(StoreCommentRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $comment = Comment::create($request->all());
 
@@ -29,14 +29,14 @@ class CommentsApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Comment $comment)
+    public function show(Comment $comment): \App\Http\Resources\Admin\CommentResource
     {
         abort_if(Gate::denies('comment_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CommentResource($comment->load(['ticket', 'user']));
     }
 
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(UpdateCommentRequest $request, Comment $comment): \Symfony\Component\HttpFoundation\Response
     {
         $comment->update($request->all());
 

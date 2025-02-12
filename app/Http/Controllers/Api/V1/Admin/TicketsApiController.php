@@ -16,14 +16,14 @@ class TicketsApiController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index(): \App\Http\Resources\Admin\TicketResource
     {
         abort_if(Gate::denies('ticket_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new TicketResource(Ticket::with(['status', 'priority', 'category', 'assigned_to_user'])->get());
     }
 
-    public function store(StoreTicketRequest $request)
+    public function store(StoreTicketRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $ticket = Ticket::create($request->all());
 
@@ -36,14 +36,14 @@ class TicketsApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Ticket $ticket)
+    public function show(Ticket $ticket): \App\Http\Resources\Admin\TicketResource
     {
         abort_if(Gate::denies('ticket_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new TicketResource($ticket->load(['status', 'priority', 'category', 'assigned_to_user']));
     }
 
-    public function update(UpdateTicketRequest $request, Ticket $ticket)
+    public function update(UpdateTicketRequest $request, Ticket $ticket): \Symfony\Component\HttpFoundation\Response
     {
         $ticket->update($request->all());
 

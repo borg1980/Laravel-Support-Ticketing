@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RolesApiController extends Controller
 {
-    public function index()
+    public function index(): \App\Http\Resources\Admin\RoleResource
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new RoleResource(Role::with(['permissions'])->get());
     }
 
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRoleRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
@@ -30,14 +30,14 @@ class RolesApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Role $role)
+    public function show(Role $role): \App\Http\Resources\Admin\RoleResource
     {
         abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new RoleResource($role->load(['permissions']));
     }
 
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role): \Symfony\Component\HttpFoundation\Response
     {
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));

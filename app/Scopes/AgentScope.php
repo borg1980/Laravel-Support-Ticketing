@@ -15,7 +15,7 @@ class AgentScope implements Scope
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
-    public function apply(Builder $builder, Model $model)
+    public function apply(Builder $builder, Model $model): void
     {
         $user = auth()->user();
         if(auth()->check() && request()->is('admin/*') && $user->roles->contains(2))
