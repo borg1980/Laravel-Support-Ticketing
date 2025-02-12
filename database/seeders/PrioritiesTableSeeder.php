@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 use App\Models\Priority;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +12,7 @@ class PrioritiesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
         $priorities = [
             'Low', 'Medium', 'High'
         ];

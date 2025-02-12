@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 use App\Models\Status;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +12,7 @@ class StatusesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
         $statuses = [
             'Open', 'Closed'
         ];

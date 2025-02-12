@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +12,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
         $categories = [
             "Uncategorized", "Billing/Payments", "Technical question"
         ];

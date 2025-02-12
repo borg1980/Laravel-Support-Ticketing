@@ -8,6 +8,7 @@ use App\Notifications\CommentEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -17,6 +18,7 @@ class Ticket extends Model implements HasMedia
     use SoftDeletes;
     use InteractsWithMedia;
     use Auditable;
+    use HasFactory;
     public $table = 'tickets';
 
     protected $appends = [
