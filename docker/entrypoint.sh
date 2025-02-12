@@ -3,6 +3,7 @@
 composer update
 
 #php artisan migrate:fresh --seed
+#php artisan storage:link
 php artisan cache:clear
 php artisan config:clear
 php artisan route:cache
