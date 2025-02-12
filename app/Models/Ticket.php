@@ -21,9 +21,11 @@ class Ticket extends Model implements HasMedia
     use HasFactory;
     public $table = 'tickets';
 
+    /*
     protected $appends = [
         'attachments',
     ];
+    */
 
     protected $dates = [
         'created_at',
