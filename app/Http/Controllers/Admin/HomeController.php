@@ -14,7 +14,7 @@ class HomeController
 
         $totalTickets = Ticket::count();
         $openTickets = Ticket::whereHas('status', function($query): void {
-            $query->whereIn('id', array(1, 2, 3));// New. In Progress, Resolved
+            $query->whereIn('id', array(1, 2, 3));// New, In Progress, Resolved
         })->count();
         $closedTickets = Ticket::whereHas('status', function($query): void {
             $query->whereName('Closed');
