@@ -10,7 +10,7 @@ class AuthGates
 {
     public function handle($request, Closure $next)
     {
-        $user = \Auth::user();
+        $user = auth()->user();
 
         if (!app()->runningInConsole() && $user) {
             $roles            = Role::with('permissions')->get();
