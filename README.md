@@ -41,7 +41,7 @@ Project is partly generated with [QuickAdminPanel](https://2019.quickadminpanel.
 
 OR
 - Clone the repository with __git clone__
-- - Run __php artisan migrate --seed__ (on your container)
+- Run __php artisan migrate --seed__ (on your container)
 ---
 
 ## License
