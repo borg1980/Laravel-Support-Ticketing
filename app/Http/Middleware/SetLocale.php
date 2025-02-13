@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Locale {
+class SetLocale {
 
 
     public function handle($request, Closure $next)
