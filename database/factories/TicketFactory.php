@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Ticket;
+use App\Models\Status;
+use App\Models\Priority;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TicketFactory extends Factory
@@ -15,9 +18,9 @@ class TicketFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
-            'status_id' => $faker->numberBetween(1, 2),
-            'priority_id' => $faker->numberBetween(1, 3),
-            'category_id' => $faker->numberBetween(1, 3),
+            'status_id' => Status::inRandomOrder()->first()->id,
+            'priority_id' => Priority::inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
             'author_name' => $this->faker->name,
             'author_email' => $this->faker->email,
             'assigned_to_user_id' => null,
