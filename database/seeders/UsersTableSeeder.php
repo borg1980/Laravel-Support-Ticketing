@@ -14,6 +14,8 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'admin@admin.com',
                 'password'       => '$2y$10$UnLIBQB1uZZC1r5msFWTPuZCZsMBUpZINpJ48G5FmMxz6yVGP83rO',
                 'remember_token' => null,
+                'created_at'     => now(),
+                'updated_at'     => now(),
             ],
             [
                 'id'             => 2,
@@ -21,6 +23,8 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'agent1@agent1.com',
                 'password'       => '$2y$10$UnLIBQB1uZZC1r5msFWTPuZCZsMBUpZINpJ48G5FmMxz6yVGP83rO',
                 'remember_token' => null,
+                'created_at'     => now(),
+                'updated_at'     => now(),
             ],
             [
                 'id'             => 3,
@@ -28,6 +32,8 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'agent2@agent2.com',
                 'password'       => '$2y$10$UnLIBQB1uZZC1r5msFWTPuZCZsMBUpZINpJ48G5FmMxz6yVGP83rO',
                 'remember_token' => null,
+                'created_at'     => now(),
+                'updated_at'     => now(),
             ],
             [
                 'id'             => 4,
@@ -35,6 +41,8 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'agent3@agent3.com',
                 'password'       => '$2y$10$UnLIBQB1uZZC1r5msFWTPuZCZsMBUpZINpJ48G5FmMxz6yVGP83rO',
                 'remember_token' => null,
+                'created_at'     => now(),
+                'updated_at'     => now(),
             ],
         ];
 

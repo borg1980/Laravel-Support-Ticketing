@@ -11,10 +11,14 @@ class RolesTableSeeder extends Seeder
             [
                 'id'    => 1,
                 'title' => 'Admin',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'id'    => 2,
                 'title' => 'Agent',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ];
 
