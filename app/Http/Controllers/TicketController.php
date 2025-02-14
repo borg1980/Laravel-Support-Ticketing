@@ -7,6 +7,8 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Notifications\CommentEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class TicketController extends Controller
 {
@@ -15,9 +17,9 @@ class TicketController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('tickets.create');
     }
@@ -25,10 +27,10 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'title'         => 'required',
@@ -55,17 +57,24 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
+     * @param  Ticket  $ticket
+     * @return View
      */
-    public function show(Ticket $ticket)
+    public function show(Ticket $ticket): View
     {
         $ticket->load('comments');
 
         return view('tickets.show', compact('ticket'));
     }
 
-    public function storeComment(Request $request, Ticket $ticket)
+    /**
+     * Store a comment for the specified ticket.
+     *
+     * @param  Request  $request
+     * @param  Ticket  $ticket
+     * @return RedirectResponse
+     */
+    public function storeComment(Request $request, Ticket $ticket): RedirectResponse
     {
         $request->validate([
             'comment_text' => 'required'
