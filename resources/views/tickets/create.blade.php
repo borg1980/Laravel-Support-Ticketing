@@ -76,7 +76,7 @@
 
                             <div class="col-md-6">
                                 <div class="needsclick dropzone @error('attachments') is-invalid @enderror" id="attachments-dropzone">
-                
+
                                 </div>
                             </div>
                             @error('attachments')
