@@ -12,6 +12,8 @@ class CommentEmailNotification extends Notification
 {
     use Queueable;
 
+    protected $comment = null;
+
     /**
      * Create a new notification instance.
      *

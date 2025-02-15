@@ -11,6 +11,8 @@ class AssignedTicketNotification extends Notification
 {
     use Queueable;
 
+    protected $ticket = null;
+
     /**
      * Create a new notification instance.
      *
