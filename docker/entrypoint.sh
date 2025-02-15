@@ -7,6 +7,7 @@ composer update
 php artisan cache:clear
 php artisan config:clear
 php artisan route:cache
+php artisan config:cache
 
 chown -R www-data:www-data /var/www/html/storage/framework
 chown -R www-data:www-data /var/www/html/vendor
