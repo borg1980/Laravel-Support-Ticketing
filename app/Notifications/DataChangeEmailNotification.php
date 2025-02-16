@@ -12,6 +12,9 @@ class DataChangeEmailNotification extends Notification
 {
     use Queueable;
 
+    protected $data = null;
+    protected $ticket = null;
+
     public function __construct(array $data)
     {
         $this->data = $data;
@@ -34,7 +37,7 @@ class DataChangeEmailNotification extends Notification
             ->subject($this->data['action'])
             ->greeting('Hi,')
             ->line($this->data['action'])
-            ->line("Customer: ".$this->ticket->author_name) 
+            ->line("Customer: ".$this->ticket->author_name)
             ->line("Ticket name: ".$this->ticket->title)
             ->line("Brief description: ".Str::limit($this->ticket->content, 200))
             ->action('View full ticket', route('admin.tickets.show', $this->ticket->id))

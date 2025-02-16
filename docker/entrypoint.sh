@@ -4,10 +4,7 @@ composer update
 
 #php artisan migrate:fresh --seed
 #php artisan storage:link
-php artisan cache:clear
-php artisan config:clear
-php artisan route:cache
-php artisan config:cache
+php artisan optimize
 
 chown -R www-data:www-data /var/www/html/storage/framework
 chown -R www-data:www-data /var/www/html/vendor
