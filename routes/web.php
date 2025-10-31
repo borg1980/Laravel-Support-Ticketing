@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [TicketController::class, 'create']);
-Route::get('/home', function () {
+Route::get('/', function () {
     $route = Gate::denies('dashboard_access') ? 'admin.tickets.index' : 'admin.home';
     if (session('status')) {
         return redirect()->route($route)->with('status', session('status'));
@@ -26,10 +25,6 @@ Route::get('/home', function () {
 });
 
 Auth::routes(['register' => false]);
-
-Route::post('tickets/media', [TicketController::class, 'storeMedia'])->name('tickets.storeMedia');
-Route::post('tickets/comment/{ticket}', [TicketController::class, 'storeComment'])->name('tickets.storeComment');
-Route::resource('tickets', TicketController::class)->only(['show', 'create', 'store']);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function (): void {
     Route::get('/', [HomeController::class, 'index'])->name('home');
