@@ -37,6 +37,9 @@
                         {{ trans('cruds.ticket.fields.category') }}
                     </th>
                     <th>
+                        {{ trans('cruds.ticket.fields.client') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.ticket.fields.author_name') }}
                     </th>
                     <th>
@@ -86,6 +89,14 @@ let filters = `
       @endforeach
     </select>
   </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <select class="form-control" name="client">
+      <option value="">All clients</option>
+      @foreach($clients as $client)
+        <option value="{{ $client->id }}"{{ request('client') == $client->id ? 'selected' : '' }}>{{ $client->name }}</option>
+      @endforeach
+    </select>
+  </div>
 </form>`;
 $('.card-body').on('change', 'select', function() {
   $('#filtersForm').submit();
@@ -132,7 +143,8 @@ $('.card-body').on('change', 'select', function() {
       data: {
         'status': searchParams.get('status'),
         'priority': searchParams.get('priority'),
-        'category': searchParams.get('category')
+        'category': searchParams.get('category'),
+        'client': searchParams.get('client')
       }
     },
     columns: [
@@ -164,6 +176,13 @@ $('.card-body').on('change', 'select', function() {
   name: 'category.name',
   render: function ( data, type, row) {
       return '<span style="color:'+row.category_color+'">'+data+'</span>';
+  }
+},
+{
+  data: 'client_name',
+  name: 'client.name',
+  render: function ( data, type, row) {
+      return '<span style="color:'+row.client_color+'">'+data+'</span>';
   }
 },
 { data: 'author_name', name: 'author_name' },

@@ -83,6 +83,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.ticket.fields.client') }}
+                        </th>
+                        <td>
+                            {{ $ticket->client->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.ticket.fields.author_name') }}
                         </th>
                         <td>

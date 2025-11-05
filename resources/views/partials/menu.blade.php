@@ -94,6 +94,16 @@
                     </a>
                 </li>
             @endcan
+            @can('client_access')
+                <li class="nav-item">
+                    <a href="{{ route("admin.clients.index") }}" class="nav-link {{ request()->is('admin/clients') || request()->is('admin/clients/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-tags nav-icon">
+
+                        </i>
+                        {{ trans('cruds.client.title') }}
+                    </a>
+                </li>
+            @endcan
             @can('ticket_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.tickets.index") }}" class="nav-link {{ request()->is('admin/tickets') || request()->is('admin/tickets/*') ? 'active' : '' }}">

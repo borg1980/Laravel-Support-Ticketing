@@ -39,6 +39,7 @@ class TicketController extends Controller
 
         $request->request->add([
             'category_id'   => 1,
+            'client_id'     => 1,
             'status_id'     => 1,
             'priority_id'   => 1
         ]);

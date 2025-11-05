@@ -36,6 +36,7 @@ class Ticket extends Model implements HasMedia
         'deleted_at',
         'priority_id',
         'category_id',
+        'client_id',
         'author_name',
         'author_email',
         'assigned_to_user_id',
@@ -80,6 +81,11 @@ class Ticket extends Model implements HasMedia
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+
     public function assigned_to_user()
     {
         return $this->belongsTo(User::class, 'assigned_to_user_id');
@@ -95,6 +101,11 @@ class Ticket extends Model implements HasMedia
             ->when(request()->input('category'), function($query): void {
                 $query->whereHas('category', function($query): void {
                     $query->whereId(request()->input('category'));
+                });
+            })
+            ->when(request()->input('client'), function($query): void {
+                $query->whereHas('client', function($query): void {
+                    $query->whereId(request()->input('client'));
                 });
             })
             ->when(request()->input('status'), function($query): void {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\StatusesController;
 use App\Http\Controllers\Admin\PrioritiesController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ClientsController;
 use App\Http\Controllers\Admin\TicketsController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\AuditLogsController;
@@ -52,6 +53,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     // Categories
     Route::delete('categories/destroy', [CategoriesController::class, 'massDestroy'])->name('categories.massDestroy');
     Route::resource('categories', CategoriesController::class);
+
+    // Clients
+    Route::delete('clients/destroy', [ClientsController::class, 'massDestroy'])->name('clients.massDestroy');
+    Route::resource('clients', ClientsController::class);
 
     // Tickets
     Route::delete('tickets/destroy', [TicketsController::class, 'massDestroy'])->name('tickets.massDestroy');

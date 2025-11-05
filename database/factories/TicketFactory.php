@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\Status;
 use App\Models\Priority;
 use App\Models\Category;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TicketFactory extends Factory
@@ -21,6 +22,7 @@ class TicketFactory extends Factory
             'status_id' => Status::inRandomOrder()->first()->id,
             'priority_id' => Priority::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id,
+            'client_id' => Client::inRandomOrder()->first()->id,
             'author_name' => $this->faker->name,
             'author_email' => $this->faker->email,
             'assigned_to_user_id' => null,

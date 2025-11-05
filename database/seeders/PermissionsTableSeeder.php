@@ -272,6 +272,36 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'id'    => '45',
+                'title' => 'client_create',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id'    => '46',
+                'title' => 'client_edit',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id'    => '47',
+                'title' => 'client_show',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id'    => '48',
+                'title' => 'client_delete',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id'    => '49',
+                'title' => 'client_access',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         Permission::insert($permissions);

@@ -86,6 +86,19 @@
                     </em>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('client_id') ? 'has-error' : '' }}">
+                <label for="client">{{ trans('cruds.ticket.fields.client') }}*</label>
+                <select name="client_id" id="category" class="form-control select2" required>
+                    @foreach($clients as $id => $client)
+                        <option value="{{ $id }}" {{ (isset($ticket) && $ticket->client ? $ticket->client->id : old('client_id')) == $id ? 'selected' : '' }}>{{ $client }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('client_id'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('client_id') }}
+                    </em>
+                @endif
+            </div>
             <div class="form-group {{ $errors->has('author_name') ? 'has-error' : '' }}">
                 <label for="author_name">{{ trans('cruds.ticket.fields.author_name') }}</label>
                 <input type="text" id="author_name" name="author_name" class="form-control" value="{{ old('author_name', isset($ticket) ? $ticket->author_name : '') }}">

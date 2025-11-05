@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
             CategoriesTableSeeder::class,
+            ClientsTableSeeder::class,
             StatusesTableSeeder::class,
             PrioritiesTableSeeder::class,
         ]);
