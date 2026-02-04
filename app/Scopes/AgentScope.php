@@ -18,8 +18,19 @@ class AgentScope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         $user = auth()->user();
-        if(auth()->check() && request()->is('admin/*') && $user->roles->contains(2))
-        {
+
+        if (!auth()->check()) {
+            return;
+        }
+
+        if (!request()->is('admin/*')) {
+            return;
+        }
+
+        $isAgent = $user->roles->contains(2);
+        $isAdmin = $user->roles->contains(1);
+
+        if ($isAgent && !$isAdmin) {
             $builder->where('assigned_to_user_id', $user->id);
         }
     }
