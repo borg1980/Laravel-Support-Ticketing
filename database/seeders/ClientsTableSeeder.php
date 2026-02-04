@@ -14,7 +14,7 @@ class ClientsTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         $clients = [
-            "NK", "WPO"
+            "Uncategorized", "NK", "WPO"
         ];
 
         foreach($clients as $client)
